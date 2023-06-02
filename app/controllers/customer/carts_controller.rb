@@ -5,6 +5,7 @@ class Customer::CartsController < ApplicationController
 
   def new
   # Add Product to cart
+  # hello
   @cart_item = current_user.carts.where(isorder:false).first.cart_items.where(product_id:params[:product_id])
   debugger
   if @cart_item.empty?
