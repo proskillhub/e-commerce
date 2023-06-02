@@ -1,0 +1,19 @@
+
+<div class="container">
+  <div class="row">
+  <% @products.each do |pro| %>
+  <div class="col">
+<div class="card" style="width: 18rem;">
+  <img src=<%=(url_for(pro.image))%> class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= pro.name%></h5>
+    <p class="card-text"><%= pro.description %></p>
+    <p class="card-text">Price : <%= pro.current_price %></p>
+    <a href="#" class="btn btn-primary">BUY</a>
+    <a href="#" class="btn btn-primary">Cart</a>
+  </div>
+</div>
+</div>
+  <% end %>   
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<h1>New Product</h1>
+
+<%= form_with model:  [:supplier, @product]  do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :current_price %><br>
+    <%= form.text_field :current_price %>
+  </div>
+  
+    <div>
+    <%= form.label :actual_price %><br>
+    <%= form.text_field :actual_price %>
+    </div>
+    <%= form.label :image%><br>
+    <%= form.file_field :image%>
+
+    <div>
+    <%= form.label :description %><br>
+    <%= form.text_field :description  %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
