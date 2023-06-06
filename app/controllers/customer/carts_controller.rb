@@ -2,7 +2,7 @@ class Customer::CartsController < ApplicationController
   def index
     @cart_items = current_user.carts.where(isorder:false).first.cart_items
   end
-
+#hhhh
   def new
   # Add Product to cart
   # hello
