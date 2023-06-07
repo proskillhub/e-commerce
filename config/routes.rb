@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users
+    resources :users,:categorys,:subcategorys
   end
   
   root 'homes#index'

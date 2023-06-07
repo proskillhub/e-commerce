@@ -1,0 +1,17 @@
+<%= link_to "Create Category", "/admin/categorys/new", class: "btn btn-primary", style: "color: red;" %>
+
+<h1>All category </h1>
+
+
+
+<% @categorys.each do |user| %>
+ 
+      <a  id="linktag"href="<%= admin_subcategorys_path(user) %>">
+<div class="card" style="width: 18rem;">
+  <img src="https://wallpaperaccess.com/full/3718207.jpg" height="200" width="300" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= user.id %>.<%= user.name %></h5>
+    
+  </div>
+  
+</div> <%end%>

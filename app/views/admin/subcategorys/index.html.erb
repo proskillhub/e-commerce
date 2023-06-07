@@ -1,0 +1,37 @@
+<%= link_to "Create Subcategory", "/admin/subcategorys/new", class: "btn btn-primary", style: "color: red;" %>
+
+<h1>All subcategory </h1>
+
+<% @category1.each do |user| %>
+ 
+      <a  id="linktag"href="<%= admin_categorys_path(user) %>">
+<div class="card" style="width: 18rem;">
+  <img src="https://wallpaperaccess.com/full/3718207.jpg" height="200" width="300" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= user.id %>.<%= user.name %></h5>
+   
+  </div>
+  </a>
+</div> <%end%>
+<% @category4.each do |user| %>
+ 
+      <a  id="linktag"href="<%= admin_categorys_path(user) %>">
+<div class="card" style="width: 18rem;">
+  <img src="https://wallpaperaccess.com/full/3718207.jpg" height="200" width="300" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= user.id %>.<%= user.name %></h5>
+   
+  </div>
+  </a>
+</div> <%end%>
+<% @category5.each do |user| %>
+ 
+      <a  id="linktag"href="<%= admin_categorys_path(user) %>">
+<div class="card" style="width: 18rem;">
+  <img src="https://wallpaperaccess.com/full/3718207.jpg" height="200" width="300" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= user.id %>.<%= user.name %></h5>
+   
+  </div>
+  </a>
+</div> <%end%>
