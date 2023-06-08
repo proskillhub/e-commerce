@@ -1,0 +1,16 @@
+<%= form_with(model: @category,url: admin_category_path) do |form| %>
+<!--create category-->
+<h1>Update Category</h1>
+ <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+  <%= form.submit%>
+  <div><br><br>
+  
+
+
+  <!-- submit button -->
+<% end %>
+  

@@ -1,0 +1,16 @@
+<%= form_with(model: @category,url: admin_subcategory_path) do |form| %>
+<h1>Update Sub Category</h1>
+  <!-- Create sub category -->
+  <div class="form-group">
+    <%= form.label :parent_id, 'Parent Category' %>
+    <%= form.collection_select :parent_id, Category.where(parent_id:nil), :id, :name, prompt: 'Select Parent Category' %>
+  </div>
+ <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+  <%= form.submit%>
+  <div>
+  <!-- submit button -->
+<% end %>
