@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource)
-        debugger
+      
         if current_user.roles.first[:name] == "admin"
             admin_users_path(current_user)
         elsif current_user.roles.first[:name] == "supplier"

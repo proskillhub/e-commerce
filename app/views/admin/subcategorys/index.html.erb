@@ -2,36 +2,29 @@
 
 <h1>All subcategory </h1>
 
-<% @category1.each do |user| %>
- 
-      <a  id="linktag"href="<%= admin_categorys_path(user) %>">
-<div class="card" style="width: 18rem;">
-  <img src="https://wallpaperaccess.com/full/3718207.jpg" height="200" width="300" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= user.id %>.<%= user.name %></h5>
-   
-  </div>
-  </a>
-</div> <%end%>
-<% @category4.each do |user| %>
- 
-      <a  id="linktag"href="<%= admin_categorys_path(user) %>">
-<div class="card" style="width: 18rem;">
-  <img src="https://wallpaperaccess.com/full/3718207.jpg" height="200" width="300" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= user.id %>.<%= user.name %></h5>
-   
-  </div>
-  </a>
-</div> <%end%>
-<% @category5.each do |user| %>
- 
-      <a  id="linktag"href="<%= admin_categorys_path(user) %>">
-<div class="card" style="width: 18rem;">
-  <img src="https://wallpaperaccess.com/full/3718207.jpg" height="200" width="300" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= user.id %>.<%= user.name %></h5>
-   
-  </div>
-  </a>
-</div> <%end%>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@categorys.map do |user|%>
+    <tr>
+      <th><%= user.id %></th>
+      
+      <td><%= user.name %></td>
+    <td><%= link_to "Edit",edit_admin_subcategory_path(user),class:"btn btn-primary btn-sm" %></td>
+      <td> <%= link_to  "Delete", admin_subcategory_path(user), data:{
+        turbo_method: "delete",
+        turbo_confirm: "Are you sure"
+      }%> </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<%=link_to "Back",:back,class:"btn btn-primary btn-sm"%>

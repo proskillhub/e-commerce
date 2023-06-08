@@ -1,17 +1,29 @@
 <%= link_to "Create Category", "/admin/categorys/new", class: "btn btn-primary", style: "color: red;" %>
 
 <h1>All category </h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@categorys.map do |user|%>
+    <tr>
+      <th><%= user.id %></th>
+      
+      <td><%= user.name %></td>
+    <td><%= link_to "Edit",edit_admin_category_path(user),class:"btn btn-primary btn-sm" %></td>
+      <td> <%= link_to  "Delete", admin_category_path(user), data:{
+        turbo_method: "delete",
+        turbo_confirm: "Are you sure"
+      }%> </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+<%= link_to "Show Subcategory", "/admin/subcategorys", class: "btn btn-primary", style: "color: red;" %>
 
-
-
-<% @categorys.each do |user| %>
- 
-      <a  id="linktag"href="<%= admin_subcategorys_path(user) %>">
-<div class="card" style="width: 18rem;">
-  <img src="https://wallpaperaccess.com/full/3718207.jpg" height="200" width="300" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= user.id %>.<%= user.name %></h5>
-    
-  </div>
-  
-</div> <%end%>

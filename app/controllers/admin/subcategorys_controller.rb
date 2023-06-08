@@ -1,9 +1,7 @@
 class Admin::SubcategorysController < ApplicationController
+  before_action :authenticate_user!
   def index
-    @category1=Category.find(1).subcategories
-    @category4=Category.find(4).subcategories
-    @category5=Category.find(5).subcategories
-                                               
+    @categorys = Category.where.not(parent_id: nil)                                           
   end
 def new
   @category=Category.new
@@ -14,9 +12,30 @@ end
     if @category.save
       redirect_to admin_subcategorys_url, notice: 'Subcategory was successfully created.'
     else
-      render :new1
+      render :new
     end
   end
+    def edit
+      @category = Category.find(params[:id])
+  end
+
+  def update
+      @category = Category.find(params[:id])       
+      if @category.update(category_params)
+        redirect_to admin_subcategorys_url, notice: 'subcategory updated successfully .'
+      else
+        render :edit, status: :unprocessable_entity
+      end
+  end
+    def destroy
+     
+      @category = Category.find(params[:id])
+      @category.destroy
+      redirect_to admin_subcategorys_url, notice: 'subcategory deleted successfully .'
+    end
+
+
+ 
     private
   
   def category_params
