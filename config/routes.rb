@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   
   namespace :customer do
     get '/checkouts/order_place', :to => 'checkouts#orderplace'
