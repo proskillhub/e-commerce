@@ -1,29 +1,70 @@
+<div class="col-12  d-flex justify-content-center">
+<div class="col-6 d-flex justify-content-center  bg-light">
+<div class="col-6  d-flex justify-content-center bg-sucess">
+<div>
+<br>
 <h1>New Product</h1>
 
 <%= form_with model:  [:supplier, @product]  do |form| %>
   <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.label :name , class:"text-success"%><br>
+    <%= form.text_field :name,class:"border border-3" ,style:"width: 90%"%>
   </div>
-
+  
   <div>
-    <%= form.label :current_price %><br>
-    <%= form.text_field :current_price %>
+  <%= form.label :Category, class:"text-success"%><br>
+    <%= select_tag 'category',options_from_collection_for_select(Category.where(parent_id:nil), 'id','name'), include_blank: true, id:'category-select',onchange:"addSubcategories()",class:"border border-3",style:"width: 90%"%>
+  </div>  
+  
+  <div>
+  <%= form.label :Subcategory, class:"text-success"%><br>
+    <%= select_tag 'category_id', options_for_select([]), include_blank: true, id: 'subcategory-select',class:"border border-3",style:"width: 90%"%>
+  </div>
+  
+  <div>
+    <%= form.label :current_price , class:"text-success"%><br>
+    <%= form.text_field :current_price,class:"border border-3" ,style:"width: 90%"%>
   </div>
   
     <div>
-    <%= form.label :actual_price %><br>
-    <%= form.text_field :actual_price %>
+    <%= form.label :actual_price, class:"text-success" %><br>
+    <%= form.text_field :actual_price ,class:"border border-3",style:"width: 90%"%>
     </div>
-    <%= form.label :image%><br>
-    <%= form.file_field :image%>
+    <%= form.label :image, class:"text-success"%><br>
+    <%= form.file_field :image ,class:"border border-3",style:"width: 90%"%>
 
     <div>
-    <%= form.label :description %><br>
-    <%= form.text_field :description  %>
+    <%= form.label :description , class:"text-success"%><br>
+    <%= form.text_field :description,class:"border border-3" ,style:"width: 90%" %>
   </div>
-
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-danger" ,style:"width: 90%"%>
   </div>
+<br>
+
 <% end %>
+</div>
+</div>
+</div>
+<script>
+window.addSubcategories = function(){
+
+  const category = document.getElementById('category-select');
+  const subcategories = document.getElementById('subcategory-select');
+  # subcategories.options.length = 0
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState ==4 && this.status==200){
+      JSON.parse(this.responseText).map((data)=>{
+        var options = `<option value=${data.id}>${data.name}</option>`
+        subcategories.innerHTML += options
+      })
+    }
+  }
+  xhttp.open("GET",`http://localhost:3000/supplier/products/addsubcategories?id=${category.value}`,true);
+  xhttp.send();
+  console.log("hello function called",category.value)
+}
+</script>
