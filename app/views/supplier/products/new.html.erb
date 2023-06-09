@@ -5,7 +5,17 @@
     <%= form.label :name %><br>
     <%= form.text_field :name %>
   </div>
-
+  
+  <div>
+    <label for="category-select">Category:</label>
+    <%= select_tag 'category',options_from_collection_for_select(Category.where(parent_id:nil), 'id','name'), include_blank: true, id:'category-select',onchange:"addSubcategories()" %>
+  </div>  
+  
+  <div>
+    <label for="subcategory-select">Subcategory:</label>
+    <%= select_tag 'category_id', options_for_select([]), id: 'subcategory-select'%>
+  </div>
+  
   <div>
     <%= form.label :current_price %><br>
     <%= form.text_field :current_price %>
@@ -27,3 +37,23 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+window.addSubcategories = function(){
+  const category = document.getElementById('category-select');
+  const subcategories = document.getElementById('subcategory-select');
+  subcategories.options.length = 0
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if(this.readyState ==4 && this.status==200){
+      JSON.parse(this.responseText).map((data)=>{
+        var options = `<option value=${data.id}>${data.name}</option>`
+        subcategories.innerHTML += options
+      })
+    }
+  }
+  xhttp.open("GET",`http://localhost:3000/supplier/products/addsubcategories?id=${category.value}`,true);
+  xhttp.send();
+  console.log("hello function called",category.value)
+}
+</script>

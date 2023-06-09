@@ -12,8 +12,10 @@ class Supplier::ProductsController < ApplicationController
         end
     
         def create
+            debugger
             @product = Product.new(product_params)    
-            @product[:category_id]=2
+            @product[:category_id]=params[:category_id]
+            debugger
             if @product.save
               redirect_to [:supplier,@product]
             else
@@ -32,6 +34,11 @@ class Supplier::ProductsController < ApplicationController
             else
               render :edit, status: :unprocessable_entity
             end
+        end
+
+        def addsubcategories
+          @subcategories = Category.find(params[:id]).subcategories
+          render json: @subcategories
         end
     
         private
