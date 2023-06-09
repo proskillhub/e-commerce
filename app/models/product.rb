@@ -5,4 +5,5 @@ class Product < ApplicationRecord
     scope :costs_more_than, ->(amount) {where("actual_price > ?", amount) } 
     has_one_attached :image
     has_many :cart_items, dependent: :destroy
+    has_many :likes
 end

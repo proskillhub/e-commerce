@@ -6,4 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,  :trackable
   has_many :carts
   has_many :orders
+  has_many :likes
+
 end
