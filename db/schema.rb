@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_15_165542) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_160625) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -63,6 +63,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_165542) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_likes_on_product_id"
+    t.index ["user_id", "product_id"], name: "index_likes_on_user_id_and_product_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -138,6 +148,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_165542) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "likes", "products"
+  add_foreign_key "likes", "users"
   add_foreign_key "orders", "carts"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
